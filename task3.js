@@ -1,27 +1,5 @@
-const { randomBytes, createHmac } = require('node:crypto');
-
-class KeyGenerator {
-  constructor() {
-    this.key = this.Key();
-  }
-  Key() {
-    const buf = randomBytes(32);
-    return buf.toString('hex');
-  }
-  getKey() {
-    return this.key;
-  }
-}
-class HMACGenerator {
-  constructor(key) {
-    this.key = key;
-  }
-  generateHMAC(pcMove) {
-    const hash = createHmac('sha256', this.key).update(pcMove).digest('hex');
-    console.log(`HMAC: ${hash}`);
-    return hash;
-  }
-}
+const HMACGenerator = require('./hmac');
+const KeyGenerator = require('./key');
 
 //Get array from console
 const arg = process.argv;
